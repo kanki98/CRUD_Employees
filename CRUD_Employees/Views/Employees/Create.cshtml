@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Gender" class="control-label">Choose gender</label>
-                <select asp-for="Gender" class="form-control"></select>
+                <select asp-for="Gender" class="form-control" asp-items="ViewBag.Genders"></select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ContractType" class="control-label">Choose contract type</label>
-                <select asp-for="ContractType" class="form-control"></select>
+                <select asp-for="ContractType" class="form-control" asp-items="ViewBag.ContractTypes"></select>
                 <span asp-validation-for="ContractType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Department" class="control-label">Choose department</label>
-                <select asp-for="Department" class="form-control"></select>
+                <select asp-for="Department" class="form-control" asp-items="ViewBag.Departments"></select>
                 <span asp-validation-for="Department" class="text-danger"></span>
             </div>
             <div class="form-group">

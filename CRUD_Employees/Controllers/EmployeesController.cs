@@ -10,6 +10,8 @@ using CRUD_Employees.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using CRUD_Employees.Helpers;
+using CRUD_Employees.Models.Enum;
 
 namespace CRUD_Employees.Controllers
 {
@@ -50,6 +52,10 @@ namespace CRUD_Employees.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
+            ViewBag.Genders = EnumHelper.GetEnumSelectList<Gender>();
+            ViewBag.ContractTypes = EnumHelper.GetEnumSelectList<ContractType>();
+            ViewBag.Departments = EnumHelper.GetEnumSelectList<Department>();
+
             return View();
         }
 
@@ -78,10 +84,20 @@ namespace CRUD_Employees.Controllers
                     employee.Image = "images/" + uniqueFileName;
                 }
 
+                if (employee.ContractType == ContractType.Permanent)
+                {
+                    employee.ContractDue = null;
+                }
+
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Genders = EnumHelper.GetEnumSelectList<Gender>();
+            ViewBag.ContractTypes = EnumHelper.GetEnumSelectList<ContractType>();
+            ViewBag.Departments = EnumHelper.GetEnumSelectList<Department>();
+
             return View(employee);
         }
 
@@ -98,6 +114,11 @@ namespace CRUD_Employees.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.Genders = EnumHelper.GetEnumSelectList<Gender>();
+            ViewBag.ContractTypes = EnumHelper.GetEnumSelectList<ContractType>();
+            ViewBag.Departments = EnumHelper.GetEnumSelectList<Department>();
+
             return View(employee);
         }
 
@@ -117,13 +138,20 @@ namespace CRUD_Employees.Controllers
             {
                 try
                 {
-                    if (imageFile != null)
+                    var existingEmployee = await _context.Employees.FindAsync(id);
+                    if (existingEmployee == null)
+                    {
+                        return NotFound();
+                    }
+                    // Retain the old image if new image isn't uploaded
+                    if (imageFile != null && imageFile.Length > 0)
                     {
                         // Process the uploaded file
                         string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                         string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
                         string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
+                        // Save the new image
                         using (var fileStream = new FileStream(filePath, FileMode.Create))
                         {
                             await imageFile.CopyToAsync(fileStream);
@@ -140,9 +168,28 @@ namespace CRUD_Employees.Controllers
                         }
 
                         // Store the new relative image path
-                        employee.Image = "images/" + uniqueFileName;
+                        existingEmployee.Image = "images/" + uniqueFileName;
                     }
-                    _context.Update(employee);
+
+                    if (employee.ContractType == ContractType.Permanent)
+                    {
+                        employee.ContractDue = null;
+                    }
+
+                    existingEmployee.FirstName = employee.FirstName;
+                    existingEmployee.LastName = employee.LastName;
+                    existingEmployee.Gender = employee.Gender;
+                    existingEmployee.BirthYear = employee.BirthYear;
+                    existingEmployee.StartedWorking = employee.StartedWorking;
+                    existingEmployee.ContractType = employee.ContractType;
+                    existingEmployee.ContractDue = employee.ContractDue;
+                    existingEmployee.Department = employee.Department;
+                    existingEmployee.VacationDays = employee.VacationDays;
+                    existingEmployee.DaysOff = employee.DaysOff;
+                    existingEmployee.PaidLeaveDays = employee.PaidLeaveDays;
+
+                    _context.Update(existingEmployee);
+                
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -158,6 +205,11 @@ namespace CRUD_Employees.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.Genders = EnumHelper.GetEnumSelectList<Gender>();
+            ViewBag.ContractTypes = EnumHelper.GetEnumSelectList<ContractType>();
+            ViewBag.Departments = EnumHelper.GetEnumSelectList<Department>();
+
             return View(employee);
         }
 
@@ -185,24 +237,27 @@ namespace CRUD_Employees.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var employee = await _context.Employees.FindAsync(id);
-            if (employee != null)
+            if (employee == null)
             {
-                // Delete the image file from wwwroot/images if it exists from previous entry
-                if (!string.IsNullOrEmpty(employee.Image))
-                {
-                    var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", employee.Image);
-                    if (System.IO.File.Exists(imagePath))
-                    {
-                        System.IO.File.Delete(imagePath);
-                    }
-                }
-
-                _context.Employees.Remove(employee);
+                return NotFound();
             }
 
+            // Prevent deletion of the default image
+            if (!string.IsNullOrEmpty(employee.Image) && employee.Image != "images/default_image.jpg")
+            {
+                var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, employee.Image);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            _context.Employees.Remove(employee);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool EmployeeExists(int id)
         {

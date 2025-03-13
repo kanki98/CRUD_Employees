@@ -17,11 +17,15 @@ namespace CRUD_Employees.Data
             // Configure DateOnly properties mapping
             modelBuilder.Entity<Employee>()
                 .Property(e => e.StartedWorking)
-                .HasConversion(v => v.ToDateTime(TimeOnly.MinValue), v => DateOnly.FromDateTime(v));
+                .HasConversion(
+                v => v.ToDateTime(TimeOnly.MinValue), 
+                v => DateOnly.FromDateTime(v));
 
             modelBuilder.Entity<Employee>()
                 .Property(e => e.ContractDue)
-                .HasConversion(v => v.ToDateTime(TimeOnly.MinValue), v => DateOnly.FromDateTime(v));
+                .HasConversion(
+                v => v.HasValue ? v.Value.ToDateTime(TimeOnly.MinValue) : (DateTime?)null,
+                v => v.HasValue ? DateOnly.FromDateTime(v.Value) : (DateOnly?)null);
         }
     }
 }

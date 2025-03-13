@@ -28,11 +28,11 @@
         <dd class="col-sm-10">
             @if (!string.IsNullOrEmpty(Model.Image))
             {
-                <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="max-width: 200px; height: auto;" />
+                <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
             }
             else
             {
-                <span>No Image Available</span>
+                <img src="~/images/default-profile.png" alt="Default Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
             }
         </dd>
         <dt class = "col-sm-2">
