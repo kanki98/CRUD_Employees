@@ -39,7 +39,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="BirthYear" class="control-label">Enter birth year</label>
-                <input asp-for="BirthYear" class="form-control" />
+                <input asp-for="BirthYear" class="form-control" type="number"
+                       min="@DateTime.Now.AddYears(-66).Year"
+                       max="@DateTime.Now.AddYears(-18).Year" />
                 <span asp-validation-for="BirthYear" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -89,24 +91,8 @@
 </div>
 
 @section Scripts {
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var contractTypeDropdown = document.getElementById("contractTypeDropdown");
-            var contractDueInput = document.getElementById("contractDueInput");
 
-            function toggleContractDue() {
-                if (contractTypeDropdown.value === "Permanent") {
-                    contractDueInput.value = "";
-                    contractDueInput.disabled = true; // Disable input when Permanent
-                } else {
-                    contractDueInput.disabled = false;
-                }
-            }
-
-            contractTypeDropdown.addEventListener("change", toggleContractDue);
-            toggleContractDue(); // Run on page load
-        });
-    </script>
+    <script src="~/js/site.js"></script>
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

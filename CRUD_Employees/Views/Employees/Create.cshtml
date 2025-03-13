@@ -34,7 +34,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="BirthYear" class="control-label">Enter birth year</label>
-                <input asp-for="BirthYear" class="form-control" />
+                <input asp-for="BirthYear" class="form-control" type="number"
+                       min="@DateTime.Now.AddYears(-66).Year"
+                       max="@DateTime.Now.AddYears(-18).Year" />
                 <span asp-validation-for="BirthYear" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -44,12 +46,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="ContractType" class="control-label">Choose contract type</label>
-                <select asp-for="ContractType" class="form-control" asp-items="ViewBag.ContractTypes"></select>
+                <select asp-for="ContractType" class="form-control" asp-items="ViewBag.ContractTypes" id="contractTypeDropdown"></select>
                 <span asp-validation-for="ContractType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ContractDue" class="control-label">Contract due</label>
-                <input asp-for="ContractDue" class="form-control" />
+                <input asp-for="ContractDue" class="form-control" id="contractDueInput" />
                 <span asp-validation-for="ContractDue" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -84,5 +86,8 @@
 </div>
 
 @section Scripts {
+
+    <script src="~/js/site.js"></script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
