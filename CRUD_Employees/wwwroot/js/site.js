@@ -8,8 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var contractDueInput = document.getElementById("contractDueInput");
     var form = document.querySelector("form");
 
-    if (!contractTypeDropdown || !form) {
-        console.error("Required elements not found.");
+    if (!contractTypeDropdown || !contractDueInput || !form) {
         return;
     }
 
