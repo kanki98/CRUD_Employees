@@ -158,9 +158,9 @@ namespace CRUD_Employees.Controllers
                         }
 
                         // Delete the old image if it exists from previous entry
-                        if (!string.IsNullOrEmpty(employee.Image))
+                        if (!string.IsNullOrEmpty(existingEmployee.Image) && existingEmployee.Image != "images/default_image.jpg")
                         {
-                            string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, employee.Image);
+                            string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, existingEmployee.Image);
                             if (System.IO.File.Exists(oldFilePath))
                             {
                                 System.IO.File.Delete(oldFilePath);
@@ -188,8 +188,7 @@ namespace CRUD_Employees.Controllers
                     existingEmployee.DaysOff = employee.DaysOff;
                     existingEmployee.PaidLeaveDays = employee.PaidLeaveDays;
 
-                    _context.Update(existingEmployee);
-                
+                    _context.Update(existingEmployee);                
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
