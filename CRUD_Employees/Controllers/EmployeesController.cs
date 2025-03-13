@@ -70,7 +70,6 @@ namespace CRUD_Employees.Controllers
             {
                 if (imageFile != null)
                 {
-                    // Process the uploaded file
                     string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                     string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
@@ -80,7 +79,6 @@ namespace CRUD_Employees.Controllers
                         await imageFile.CopyToAsync(fileStream);
                     }
 
-                    // Store the relative path in the database
                     employee.Image = "images/" + uniqueFileName;
                 }
 
@@ -143,21 +141,17 @@ namespace CRUD_Employees.Controllers
                     {
                         return NotFound();
                     }
-                    // Retain the old image if new image isn't uploaded
                     if (imageFile != null && imageFile.Length > 0)
                     {
-                        // Process the uploaded file
                         string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                         string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
                         string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                        // Save the new image
                         using (var fileStream = new FileStream(filePath, FileMode.Create))
                         {
                             await imageFile.CopyToAsync(fileStream);
                         }
 
-                        // Delete the old image if it exists from previous entry
                         if (!string.IsNullOrEmpty(existingEmployee.Image) && existingEmployee.Image != "images/default_image.jpg")
                         {
                             string oldFilePath = Path.Combine(_webHostEnvironment.WebRootPath, existingEmployee.Image);
@@ -167,7 +161,6 @@ namespace CRUD_Employees.Controllers
                             }
                         }
 
-                        // Store the new relative image path
                         existingEmployee.Image = "images/" + uniqueFileName;
                     }
 
@@ -239,9 +232,7 @@ namespace CRUD_Employees.Controllers
             if (employee == null)
             {
                 return NotFound();
-            }
-
-            // Prevent deletion of the default image
+            }           
             if (!string.IsNullOrEmpty(employee.Image) && employee.Image != "images/default_image.jpg")
             {
                 var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, employee.Image);

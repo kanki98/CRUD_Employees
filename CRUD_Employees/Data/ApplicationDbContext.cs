@@ -8,13 +8,12 @@ namespace CRUD_Employees.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Employee> Employees { get; set; } // Registering Employee Model
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure DateOnly properties mapping
             modelBuilder.Entity<Employee>()
                 .Property(e => e.StartedWorking)
                 .HasConversion(

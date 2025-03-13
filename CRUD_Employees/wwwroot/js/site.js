@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var contractTypeDropdown = document.getElementById("contractTypeDropdown");
     var contractDueInput = document.getElementById("contractDueInput");
     var form = document.querySelector("form");
+
+    if (!contractTypeDropdown || !form) {
+        console.error("Required elements not found.");
+        return;
+    }
+
     var errorMessage = setupErrorMessage();
 
     function setupErrorMessage() {
@@ -53,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function validateContractDue(event) {
         hideErrorMessage();
 
+        if (!contractDueInput) return;
+
         if (contractTypeDropdown.value !== "Permanent") {
             if (!contractDueInput.value) {
                 showErrorMessage("Contract due date is required when the contract is not Permanent.");
@@ -74,29 +82,24 @@ document.addEventListener("DOMContentLoaded", function () {
         return contractDueDate < currentDate;
     }
 
-    // Event listeners
     form.addEventListener("submit", validateContractDue);
     contractTypeDropdown.addEventListener("change", toggleContractDue);
     toggleContractDue();
 });
 
   
-// Form submission validation for birth year
 document.addEventListener("DOMContentLoaded", function () {
-    // Custom validation for BirthYear field
     const birthYearInput = document.querySelector("input[name='BirthYear']");
     const form = document.querySelector("form");
 
     if (form) {
         form.onsubmit = function (event) {
             const birthYear = birthYearInput.value;
-
-            // Check if the birth year is a valid number and within the correct range
             const minYear = new Date().getFullYear() - 66;
             const maxYear = new Date().getFullYear() - 18;
 
             if (isNaN(birthYear) || birthYear < minYear || birthYear > maxYear) {
-                event.preventDefault(); // Prevent form submission
+                event.preventDefault();
                 alert("Please enter a valid birth year between 18 and 66 years old.");
             }
         };
