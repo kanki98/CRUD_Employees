@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Employees\Delete.cshtml" />
+    <Content Remove="Views\Home\Privacy.cshtml" />
     <Content Remove="wwwroot\images\10d8865d-f71c-47c6-b8eb-e8d82855f622_tengen.png" />
     <Content Remove="wwwroot\images\3462f5e4-08fe-46f1-8e9a-e7a1a072e45d_male_employee.jpg" />
     <Content Remove="wwwroot\images\739429df-1a17-4ed2-9e0f-e552f0192aff_default_image.jpg" />

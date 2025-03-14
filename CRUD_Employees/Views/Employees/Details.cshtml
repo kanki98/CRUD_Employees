@@ -4,106 +4,135 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Employee details</h1>
+<div class="row d-flex justify-content-between">
+    <div class="col text-light">
+		<h1>Employee details</h1>
+    </div>
+    <div class="col d-flex justify-content-end">
+        <div class="d-flex gap-2 mt-3">
+            <a asp-action="Index" class="btn btn-info hover-text-color">Back to list</a>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary hover-text-color">Edit</a>
 
-<hr />
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">First Name</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.FirstName</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Last Name</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.LastName</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Image</label>
-            <div class="col-sm-8">
-                @if (!string.IsNullOrEmpty(Model.Image) && Model.Image != "images/default_image.jpg")
-                {
-                    <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
-                }
-                else
-                {
-                    <img src="~/images/default_image.jpg" alt="Default Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
-                }
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Gender</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.Gender</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Birth Year</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.BirthYear</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Started Working</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.StartedWorking</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Contract Type</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.ContractType</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Contract Due</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.ContractDue</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Department</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.Department</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Vacation Days</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.VacationDays</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Days Off</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.DaysOff</p>
-            </div>
-        </div>
-
-        <div class="form-group row mb-2">
-            <label class="col-sm-4 col-form-label">Paid Leave Days</label>
-            <div class="col-sm-8">
-                <p class="form-control-plaintext fw-bold">@Model.PaidLeaveDays</p>
+            <button type="button" class="btn btn-danger hover-text-color" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+            </button>
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+							<h5 class="modal-title"><strong>Delete</strong></h5>
+                        </div>
+                        <div class="modal-body">
+                            <strong>Are you sure you want to delete this employee?</strong>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form asp-action="Delete" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <button type="submit" class="btn btn-danger hover-text-color">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<hr />
+<div class="row text-light">
+    <div class="col">
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">First name:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.FirstName</p>
+            </div>
+        </div>
 
-<div class="d-flex gap-2 mt-3">
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary pr-2 py-1 hover-text-color">Edit</a>
-    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger px-3 py-1 hover-text-color">Delete</a>
-    <a asp-action="Index" class="btn btn-info px-3 py-1 hover-text-color">Back to List</a>
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Last name:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.LastName</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Gender:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.Gender</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Birth year:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.BirthYear</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Started working:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.StartedWorking</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Contract type:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.ContractType</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Contract due:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.ContractDue</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Department:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.Department</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Vacation days:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.VacationDays</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Days off:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.DaysOff</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Paid leave days:</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold text-light">@Model.PaidLeaveDays</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col">
+        <div class="form-group row mb-2">
+            <div>
+                @if (!string.IsNullOrEmpty(Model.Image) && Model.Image != "images/default_image.jpg")
+                {
+                    <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="min-width: 250px; min-height: 250px;
+                    max-width: 250px; max-height: 250px;" />
+                }
+                else
+                {
+                    <img src="~/images/default_image.jpg" alt="Default Employee Image" class="img-fluid rounded" style="min-width: 250px; min-height: 250px;
+                    max-width: 250px; max-height: 250px;" />
+                }
+            </div>
+        </div>
+    </div>
 </div>
