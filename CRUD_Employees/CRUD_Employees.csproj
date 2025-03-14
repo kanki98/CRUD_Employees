@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\10d8865d-f71c-47c6-b8eb-e8d82855f622_tengen.png" />
+    <Content Remove="wwwroot\images\3462f5e4-08fe-46f1-8e9a-e7a1a072e45d_male_employee.jpg" />
+    <Content Remove="wwwroot\images\739429df-1a17-4ed2-9e0f-e552f0192aff_default_image.jpg" />
+    <Content Remove="wwwroot\images\c9fb63fd-cd09-4d3b-ba98-6d0db6888793_default_image.jpg" />
+    <Content Remove="wwwroot\images\default_image.jpg" />
+    <Content Remove="wwwroot\images\female_employee.jpg" />
+    <Content Remove="wwwroot\images\male_employee.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

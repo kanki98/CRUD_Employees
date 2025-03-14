@@ -4,9 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Employee</h4>
+<h1>Edit employee</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,76 +12,85 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label">Enter first name</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label asp-for="LastName" class="control-label">Enter last name</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Upload Image</label>
-                <input type="file" name="imageFile" class="form-control" accept=".jpg,.jpeg,.png" />
-                <span class="text-danger">@ViewData["ImageError"]</span>
+                <label class="control-label">Current Profile Image</label>
+                <br />
+                <img src="@Url.Content("~/" + Model.Image)" alt="Profile Image" style="max-width: 150px; max-height: 250px; border-radius: 5px;" />
             </div>
             <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <select asp-for="Gender" class="form-control"></select>
+                <label class="control-label">Upload New Profile Image</label>
+                <input type="file" name="imageFile" class="form-control" accept=".jpg,.jpeg,.png" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label">Choose gender</label>
+                <select asp-for="Gender" class="form-control" asp-items="ViewBag.Genders"></select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BirthYear" class="control-label"></label>
-                <input asp-for="BirthYear" class="form-control" />
+                <label asp-for="BirthYear" class="control-label">Enter birth year</label>
+                <input asp-for="BirthYear" class="form-control" type="number"
+                       min="@DateTime.Now.AddYears(-66).Year"
+                       max="@DateTime.Now.AddYears(-18).Year" />
                 <span asp-validation-for="BirthYear" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StartedWorking" class="control-label"></label>
+                <label asp-for="StartedWorking" class="control-label">When did the employee start working?</label>
                 <input asp-for="StartedWorking" class="form-control" />
                 <span asp-validation-for="StartedWorking" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ContractType" class="control-label"></label>
-                <select asp-for="ContractType" class="form-control"></select>
+                <label asp-for="ContractType" class="control-label">Choose contract type</label>
+                <select asp-for="ContractType" class="form-control" asp-items="ViewBag.ContractTypes" id="contractTypeDropdown"></select>
                 <span asp-validation-for="ContractType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ContractDue" class="control-label"></label>
-                <input asp-for="ContractDue" class="form-control" />
+                <label asp-for="ContractDue" class="control-label">Contract due</label>
+                <input asp-for="ContractDue" class="form-control" id="contractDueInput" />
                 <span asp-validation-for="ContractDue" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <select asp-for="Department" class="form-control"></select>
+                <label asp-for="Department" class="control-label">Choose department</label>
+                <select asp-for="Department" class="form-control" asp-items="ViewBag.Departments"></select>
                 <span asp-validation-for="Department" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="VacationDays" class="control-label"></label>
+                <label asp-for="VacationDays" class="control-label">Vacation days</label>
                 <input asp-for="VacationDays" class="form-control" />
                 <span asp-validation-for="VacationDays" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DaysOff" class="control-label"></label>
+                <label asp-for="DaysOff" class="control-label">Days off</label>
                 <input asp-for="DaysOff" class="form-control" />
                 <span asp-validation-for="DaysOff" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PaidLeaveDays" class="control-label"></label>
+                <label asp-for="PaidLeaveDays" class="control-label">Paid leave days</label>
                 <input asp-for="PaidLeaveDays" class="form-control" />
                 <span asp-validation-for="PaidLeaveDays" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success px-2 py-2 hover-text-color" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-info px-2 py-2 hover-text-color">Back to List</a>
 </div>
 
 @section Scripts {
+
+    <script src="~/js/site.js"></script>
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

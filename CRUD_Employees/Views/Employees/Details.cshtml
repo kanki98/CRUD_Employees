@@ -4,10 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="py-3">Employee details</h1>
 
 <div>
-    <h4>Employee</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -28,11 +27,11 @@
         <dd class="col-sm-10">
             @if (!string.IsNullOrEmpty(Model.Image))
             {
-                <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="max-width: 200px; height: auto;" />
+                <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
             }
             else
             {
-                <span>No Image Available</span>
+                <img src="~/images/default-profile.png" alt="Default Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
             }
         </dd>
         <dt class = "col-sm-2">
@@ -92,6 +91,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary pr-2 py-1 hover-text-color">Edit</a> 
+    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger px-3 py-1 hover-text-color">Delete</a>
+    <a asp-action="Index" class="btn btn-info px-3 py-1 hover-text-color">Back to List</a>
 </div>
