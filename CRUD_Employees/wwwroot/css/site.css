@@ -48,11 +48,10 @@ body {
 
 tr:hover td {
     font-weight: bold; 
-    font-size: calc(1rem + 2px); 
+    font-size: calc(1.15rem + 2px); 
     transition: font-size 0.2s ease-in-out, font-weight 0.2s ease-in-out;
 }
-.CRUD-btn:hover {
-    font-weight: bold;
-    font-size: calc(1rem + 2px);
-    transition: font-size 0.2s ease-in-out, font-weight 0.2s ease-in-out;
+
+employee-td-font {
+    font-size : 1.15rem;
 }

@@ -10,13 +10,13 @@
 <table class="table">
     <thead>
         <tr>
-			<th><h3>Employees</h3></th>
+			<th><h2>Employees</h2></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
             <tr onclick="location.href='@Url.Action("Details", new { id = item.Id })';" style="cursor: pointer;">
-                <td>
+                <td class="mb-4 employee-td-font">
                     @Html.DisplayFor(modelItem => item.FullName)
                 </td>
             </tr>

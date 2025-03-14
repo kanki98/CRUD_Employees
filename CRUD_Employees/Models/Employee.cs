@@ -45,13 +45,5 @@ namespace CRUD_Employees.Models
         public int? PaidLeaveDays { get; set; }
         public string FullName => $"{FirstName} {LastName}";
 
-        public Employee()
-        {
-            if ( ContractType == ContractType.Permanent) 
-            {
-                ContractDue = null;
-            }
-
-        }
     }
 }

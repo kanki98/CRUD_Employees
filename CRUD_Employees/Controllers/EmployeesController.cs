@@ -81,6 +81,10 @@ namespace CRUD_Employees.Controllers
 
                     employee.Image = "images/" + uniqueFileName;
                 }
+                else
+                {
+                    employee.Image = "images/default_image.jpg";
+                }
 
                 if (employee.ContractType == ContractType.Permanent)
                 {
@@ -177,7 +181,7 @@ namespace CRUD_Employees.Controllers
                     existingEmployee.ContractType = employee.ContractType;
                     existingEmployee.ContractDue = employee.ContractDue;
                     existingEmployee.Department = employee.Department;
-                    existingEmployee.VacationDays = employee.VacationDays;
+                    existingEmployee.VacationDays = employee.VacationDays;  
                     existingEmployee.DaysOff = employee.DaysOff;
                     existingEmployee.PaidLeaveDays = employee.PaidLeaveDays;
 

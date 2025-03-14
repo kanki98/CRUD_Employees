@@ -4,94 +4,106 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 class="py-3">Employee details</h1>
+<h1>Employee details</h1>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class="col-sm-10">
-            @if (!string.IsNullOrEmpty(Model.Image))
-            {
-                <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
-            }
-            else
-            {
-                <img src="~/images/default-profile.png" alt="Default Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
-            }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BirthYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.StartedWorking)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.StartedWorking)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContractType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContractType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContractDue)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContractDue)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Department)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VacationDays)
-        </dt>
-        <dd class = "col-sm-10">
-            @(Model.VacationDays ?? 0)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DaysOff)
-        </dt>
-        <dd class = "col-sm-10">
-            @(Model.DaysOff ?? 0)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PaidLeaveDays)
-        </dt>
-        <dd class = "col-sm-10">
-            @(Model.PaidLeaveDays ?? 0)
-        </dd>
-    </dl>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">First Name</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.FirstName</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Last Name</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.LastName</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Image</label>
+            <div class="col-sm-8">
+                @if (!string.IsNullOrEmpty(Model.Image) && Model.Image != "images/default_image.jpg")
+                {
+                    <img src="~/@Model.Image" alt="Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
+                }
+                else
+                {
+                    <img src="~/images/default_image.jpg" alt="Default Employee Image" class="img-fluid rounded" style="max-width: 150px; max-height: 250px;" />
+                }
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Gender</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.Gender</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Birth Year</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.BirthYear</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Started Working</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.StartedWorking</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Contract Type</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.ContractType</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Contract Due</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.ContractDue</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Department</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.Department</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Vacation Days</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.VacationDays</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Days Off</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.DaysOff</p>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-sm-4 col-form-label">Paid Leave Days</label>
+            <div class="col-sm-8">
+                <p class="form-control-plaintext fw-bold">@Model.PaidLeaveDays</p>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary pr-2 py-1 hover-text-color">Edit</a> 
+
+<div class="d-flex gap-2 mt-3">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary pr-2 py-1 hover-text-color">Edit</a>
     <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger px-3 py-1 hover-text-color">Delete</a>
     <a asp-action="Index" class="btn btn-info px-3 py-1 hover-text-color">Back to List</a>
 </div>
