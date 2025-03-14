@@ -4,27 +4,27 @@
 // Write your JavaScript code.
 
 document.addEventListener("DOMContentLoaded", function () {
-    var contractTypeDropdown = document.getElementById("contractTypeDropdown");
-    var contractDueInput = document.getElementById("contractDueInput");
-    var form = document.querySelector("form");
+    const contractTypeDropdown = document.getElementById("contractTypeDropdown");
+    const contractDueInput = document.getElementById("contractDueInput");
+    const startDateInput = document.getElementById("StartedWorking");
+    const form = document.querySelector("form");
 
-    if (!contractTypeDropdown || !contractDueInput || !form) {
+    if (!contractTypeDropdown || !contractDueInput || !startDateInput || !form) {
         return;
     }
 
-    var errorMessage = setupErrorMessage();
+    const errorMessage = setupErrorMessage();
 
     function setupErrorMessage() {
-        var existingError = document.getElementById("contractErrorMessage");
-        if (!existingError) {
-            var errorSpan = document.createElement("span");
+        let errorSpan = document.getElementById("contractErrorMessage");
+        if (!errorSpan) {
+            errorSpan = document.createElement("span");
             errorSpan.id = "contractErrorMessage";
             errorSpan.style.color = "red";
             errorSpan.style.display = "none";
             contractDueInput.parentElement.appendChild(errorSpan);
-            return errorSpan;
         }
-        return existingError;
+        return errorSpan;
     }
 
     function toggleContractDue() {
@@ -57,17 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validateContractDue(event) {
         hideErrorMessage();
-
-        if (!contractDueInput) return;
-
         if (contractTypeDropdown.value !== "Permanent") {
             if (!contractDueInput.value) {
                 showErrorMessage("Contract due date is required when the contract is not Permanent.");
                 event.preventDefault();
-                return;
-            }
-
-            if (isPastDate(contractDueInput.value)) {
+            } else if (isPastDate(contractDueInput.value)) {
                 showErrorMessage("Contract due date cannot be in the past.");
                 event.preventDefault();
             }
@@ -75,16 +69,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function isPastDate(dateString) {
-        var contractDueDate = new Date(dateString);
-        var currentDate = new Date();
+        const contractDueDate = new Date(dateString);
+        const currentDate = new Date();
         currentDate.setHours(0, 0, 0, 0);
         return contractDueDate < currentDate;
     }
 
-    form.addEventListener("submit", validateContractDue);
+    function validateStartDate(event) {
+        const startDateValue = startDateInput.value;
+        if (startDateValue) {
+            const startDate = new Date(startDateValue);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (startDate > today) {
+                alert("Start date cannot be in the future.");
+                event.preventDefault();
+            }
+        }
+    }
+
+    form.addEventListener("submit", function (event) {
+        validateContractDue(event);
+        validateStartDate(event);
+    });
+
     contractTypeDropdown.addEventListener("change", toggleContractDue);
     toggleContractDue();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const birthYearInput = document.querySelector("input[name='BirthYear']");
+    const form = document.querySelector("form");
+
+    if (form) {
+        form.onsubmit = function (event) {
+            const birthYear = birthYearInput.value;
+            const minYear = new Date().getFullYear() - 66;
+            const maxYear = new Date().getFullYear() - 18;
+
+            if (isNaN(birthYear) || birthYear < minYear || birthYear > maxYear) {
+                event.preventDefault();
+                alert("Please enter a valid birth year between 18 and 66 years old.");
+            }
+        };
+    }
+});
+
+
 
   
 document.addEventListener("DOMContentLoaded", function () {
