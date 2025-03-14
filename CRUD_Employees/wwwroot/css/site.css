@@ -21,13 +21,17 @@ body {
   margin-bottom: 60px;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+.form-floating > .form-control-plaintext::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
 }
+.form-floating > .form-control::placeholder {
+    background-color: var(--bs-tertiary-bg);
+    text-align: end;
+}
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+    text-align: start;
 }
 
 .hover-text-color {
@@ -38,12 +42,12 @@ body {
     filter: brightness(70%);
     transition-delay: 0.15s;
 }
-.navbar-nav .nav-link{
-    transition: color 0.3s ease-in-out;
+.navbar-nav .nav-link {
+    transition: font-weight 0.2s ease-in-out;
 }
 
 .navbar-nav .nav-link:hover {
-    color: #f8d210 !important;
+    font-weight: 600;
 }
 
 tr:hover td {
@@ -55,3 +59,18 @@ tr:hover td {
 employee-td-font {
     font-size : 1.15rem;
 }
+
+.main-container-bg {
+    background-color: #343a40; 
+    min-height: 100vh; 
+    padding-bottom: 20px; 
+    padding-top: 20px;
+}
+
+.custom-table-padding {
+    padding: 8px;
+}
+    
+
+
+

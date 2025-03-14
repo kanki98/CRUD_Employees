@@ -24,7 +24,7 @@ namespace CRUD_Employees.Models
         public int BirthYear { get; set; }
 
         [Display(Name = "Start date")]
-        public DateOnly StartedWorking { get; set; }
+        public DateOnly StartedWorking { get; set; }    
 
         [Display(Name = "Contract type")]
         public ContractType ContractType { get; set; }
@@ -36,12 +36,15 @@ namespace CRUD_Employees.Models
         public Department Department { get; set; }
 
         [Display(Name = "Vacation days")]
+        [Range(0, int.MaxValue, ErrorMessage = "Vacation days cannot be negative.")]
         public int? VacationDays { get; set; }
 
         [Display(Name = "Days off")]
+        [Range(0, int.MaxValue, ErrorMessage = "Days off cannot be negative.")]
         public int? DaysOff { get; set; }
 
         [Display(Name = "Paid leave days")]
+        [Range(0, int.MaxValue, ErrorMessage = "Paid leave days cannot be negative.")]
         public int? PaidLeaveDays { get; set; }
         public string FullName => $"{FirstName} {LastName}";
 

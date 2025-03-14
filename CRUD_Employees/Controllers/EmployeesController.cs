@@ -31,7 +31,7 @@ namespace CRUD_Employees.Controllers
             return View(await _context.Employees.ToListAsync());
         }
 
-        // GET: Employees/Details/5
+        // GET: Employees/Details/
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -60,8 +60,6 @@ namespace CRUD_Employees.Controllers
         }
 
         // POST: Employees/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create( Employee employee, IFormFile? imageFile)
@@ -102,8 +100,7 @@ namespace CRUD_Employees.Controllers
 
             return View(employee);
         }
-
-        // GET: Employees/Edit/5
+        // GET: Employees/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,10 +120,7 @@ namespace CRUD_Employees.Controllers
 
             return View(employee);
         }
-
-        // POST: Employees/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Employees/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Employee employee, IFormFile? imageFile)
@@ -209,7 +203,7 @@ namespace CRUD_Employees.Controllers
             return View(employee);
         }
 
-        // GET: Employees/Delete/5
+        // GET: Employees/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -227,7 +221,7 @@ namespace CRUD_Employees.Controllers
             return View(employee);
         }
 
-        // POST: Employees/Delete/5
+        // POST: Employees/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -242,7 +236,7 @@ namespace CRUD_Employees.Controllers
                 var imagePath = Path.Combine(_webHostEnvironment.WebRootPath, employee.Image);
                 if (System.IO.File.Exists(imagePath))
                 {
-                    System.IO.File.Delete(imagePath);
+                    System.IO.File.Delete(imagePath);   
                 }
             }
 

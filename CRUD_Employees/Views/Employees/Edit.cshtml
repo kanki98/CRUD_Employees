@@ -4,16 +4,16 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit employee</h1>
+<h1 class="text-light">Edit employee</h1>
 <hr />
 <div class="row">
     <div class="col-md-6">
-        <form asp-action="Edit" enctype="multipart/form-data">
+        <form asp-action="Edit" id="editForm" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group row mt-1 mb-2">
-                <label asp-for="FirstName" class="col-sm-4 col-form-label">Enter first name</label>
+                <label asp-for="FirstName" class="col-sm-4 col-form-label text-light">Enter new first name:</label>
                 <div class="col-sm-8">
                     <input asp-for="FirstName" class="form-control" />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="LastName" class="col-sm-4 col-form-label">Enter last name</label>
+                <label asp-for="LastName" class="col-sm-4 col-form-label text-light">Enter new last name:</label>
                 <div class="col-sm-8">
                     <input asp-for="LastName" class="form-control" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
@@ -29,21 +29,21 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label class="col-sm-4 col-form-label">Current Profile Image</label>
+                <label class="col-sm-4 col-form-label text-light">Current Profile Image:</label>
                 <div class="col-sm-8">
                     <img src="@Url.Content("~/" + Model.Image)" alt="Profile Image" style="max-width: 150px; max-height: 250px; border-radius: 5px;" />
                 </div>
             </div>
 
             <div class="form-group row mb-2">
-                <label class="col-sm-4 col-form-label">Upload New Profile Image</label>
+                <label class="col-sm-4 col-form-label text-light">Upload New Profile Image:</label>
                 <div class="col-sm-8">
                     <input type="file" name="imageFile" class="form-control" accept=".jpg,.jpeg,.png" />
                 </div>
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="Gender" class="col-sm-4 col-form-label">Choose gender</label>
+                <label asp-for="Gender" class="col-sm-4 col-form-label text-light">Choose gender:</label>
                 <div class="col-sm-8">
                     <select asp-for="Gender" class="form-control" asp-items="ViewBag.Genders"></select>
                     <span asp-validation-for="Gender" class="text-danger"></span>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="BirthYear" class="col-sm-4 col-form-label">Enter birth year</label>
+                <label asp-for="BirthYear" class="col-sm-4 col-form-label text-light">Enter birth year:</label>
                 <div class="col-sm-8">
                     <input asp-for="BirthYear" class="form-control" type="number"
                            min="@DateTime.Now.AddYears(-66).Year"
@@ -61,7 +61,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="StartedWorking" class="col-sm-4 col-form-label">When did the employee start working?</label>
+                <label asp-for="StartedWorking" class="col-sm-4 col-form-label text-light">When did the employee start working?:</label>
                 <div class="col-sm-8">
                     <input asp-for="StartedWorking" class="form-control" id="StartedWorking" type="date" placeholder="dd/mm/yyyy" />
                     <span asp-validation-for="StartedWorking" class="text-danger"></span>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="ContractType" class="col-sm-4 col-form-label">Choose contract type</label>
+                <label asp-for="ContractType" class="col-sm-4 col-form-label text-light">Choose contract type:</label>
                 <div class="col-sm-8">
                     <select asp-for="ContractType" class="form-control" asp-items="ViewBag.ContractTypes" id="contractTypeDropdown"></select>
                     <span asp-validation-for="ContractType" class="text-danger"></span>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="ContractDue" class="col-sm-4 col-form-label">Contract due</label>
+                <label asp-for="ContractDue" class="col-sm-4 col-form-label text-light">Contract due:</label>
                 <div class="col-sm-8">
                     <input asp-for="ContractDue" class="form-control" type="date" id="contractDueInput" />
                     <span asp-validation-for="ContractDue" class="text-danger"></span>
@@ -85,7 +85,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="Department" class="col-sm-4 col-form-label">Choose department</label>
+                <label asp-for="Department" class="col-sm-4 col-form-label text-light">Choose department:</label>
                 <div class="col-sm-8">
                     <select asp-for="Department" class="form-control" asp-items="ViewBag.Departments"></select>
                     <span asp-validation-for="Department" class="text-danger"></span>
@@ -93,7 +93,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="VacationDays" class="col-sm-4 col-form-label">Vacation days</label>
+                <label asp-for="VacationDays" class="col-sm-4 col-form-label text-light">Vacation days:</label>
                 <div class="col-sm-8">
                     <input asp-for="VacationDays" class="form-control" />
                     <span asp-validation-for="VacationDays" class="text-danger"></span>
@@ -101,30 +101,29 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="DaysOff" class="col-sm-4 col-form-label">Days off</label>
+                <label asp-for="DaysOff" class="col-sm-4 col-form-label text-light">Days off:</label>
                 <div class="col-sm-8">
                     <input asp-for="DaysOff" class="form-control" />
                     <span asp-validation-for="DaysOff" class="text-danger"></span>
                 </div>
             </div>
 
-            <div class="form-group row mb-2">
-                <label asp-for="PaidLeaveDays" class="col-sm-4 col-form-label">Paid leave days</label>
+            <div class="form-group row">
+                <label asp-for="PaidLeaveDays" class="col-sm-4 col-form-label text-light">Paid leave days:</label>
                 <div class="col-sm-8">
                     <input asp-for="PaidLeaveDays" class="form-control" />
                     <span asp-validation-for="PaidLeaveDays" class="text-danger"></span>
                 </div>
-            </div>
-
-            <div class="form-group row mb-1 d-flex justify-content-between">
-                <div>
-                    <input type="submit" value="Save" class="btn btn-success my-1 py-1 hover-text-color" />
-                </div>
-                <div>
-                    <a asp-action="Index" class="btn btn-primary my-1 py-1 hover-text-color">Back to List</a>
-                </div>
+               
             </div>
         </form>
+    </div>
+</div>
+
+<div class="d-flex justify-content-end">
+    <div class="d-flex gap-2 ">
+        <a asp-action="Index" class="btn btn-primary hover-text-color">Close</a>
+         <button type="submit" form="editForm" class="btn btn-success hover-text-color">Save Changes</button>
     </div>
 </div>
 

@@ -97,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleContractDue();
 });
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const birthYearInput = document.querySelector("input[name='BirthYear']");
     const form = document.querySelector("form");
@@ -115,24 +117,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
-
-  
 document.addEventListener("DOMContentLoaded", function () {
-    const birthYearInput = document.querySelector("input[name='BirthYear']");
-    const form = document.querySelector("form");
+    const numericInputs = document.querySelectorAll(
+        "input[name='VacationDays'], input[name='DaysOff'], input[name='PaidLeaveDays']");
 
-    if (form) {
-        form.onsubmit = function (event) {
-            const birthYear = birthYearInput.value;
-            const minYear = new Date().getFullYear() - 66;
-            const maxYear = new Date().getFullYear() - 18;
-
-            if (isNaN(birthYear) || birthYear < minYear || birthYear > maxYear) {
-                event.preventDefault();
-                alert("Please enter a valid birth year between 18 and 66 years old.");
+    numericInputs.forEach(input => {
+        input.addEventListener("input", function () {
+            if (this.value < 0) {
+                this.value = 0;
+                alert("Negative values are not allowed for Vacation Days, Days Off, or Paid Leave Days.");
             }
-        };
-    }
+        });
+    });
 });
-    
