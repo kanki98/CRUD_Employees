@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Employee details</h1>
+<h1 class="py-3">Employee details</h1>
 
 <div>
     <hr />
@@ -91,6 +91,7 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary pr-2 py-1 hover-text-color">Edit</a> 
+    <a asp-action="Delete" asp-route-id="@Model?.Id" class="btn btn-danger px-3 py-1 hover-text-color">Delete</a>
+    <a asp-action="Index" class="btn btn-info px-3 py-1 hover-text-color">Back to List</a>
 </div>
