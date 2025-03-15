@@ -193,7 +193,7 @@ namespace CRUD_Employees.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", new { id = employee.Id });
             }
 
             ViewBag.Genders = EnumHelper.GetEnumSelectList<Gender>();

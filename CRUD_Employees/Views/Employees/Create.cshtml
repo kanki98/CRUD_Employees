@@ -12,7 +12,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group row mt-1 mb-2">
-                <label asp-for="FirstName" class="col-sm-4 col-form-label text-light">Enter first name:</label>
+                <label asp-for="FirstName" class="col-sm-4 col-form-label text-light">Enter first name*:</label>
                 <div class="col-sm-8">
                     <input asp-for="FirstName" class="form-control" />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="LastName" class="col-sm-4 col-form-label text-light">Enter last name:</label>
+                <label asp-for="LastName" class="col-sm-4 col-form-label text-light">Enter last name*:</label>
                 <div class="col-sm-8">
                     <input asp-for="LastName" class="form-control" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label class="col-sm-4 col-form-label text-light">Upload Image:</label>
+                <label class="col-sm-4 col-form-label text-light">Upload Image*:</label>
                 <div class="col-sm-8">
                     <input type="file" name="imageFile" class="form-control" accept=".jpg,.jpeg,.png" />
                     <span class="text-danger">@ViewData["ImageError"]</span>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="Gender" class="col-sm-4 col-form-label text-light">Choose gender:</label>
+                <label asp-for="Gender" class="col-sm-4 col-form-label text-light">Choose gender*:</label>
                 <div class="col-sm-8">
                     <select asp-for="Gender" class="form-control" asp-items="ViewBag.Genders"></select>
                     <span asp-validation-for="Gender" class="text-danger"></span>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="BirthYear" class="col-sm-4 col-form-label text-light">Enter birth year:</label>
+                <label asp-for="BirthYear" class="col-sm-4 col-form-label text-light">Enter birth year*:</label>
                 <div class="col-sm-8">
                     <input asp-for="BirthYear" class="form-control" type="number"
                            min="@DateTime.Now.AddYears(-66).Year"
@@ -54,7 +54,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="StartedWorking" class="col-sm-4 col-form-label text-light">When did the employee start working?:</label>
+                <label asp-for="StartedWorking" class="col-sm-4 col-form-label text-light">Contract start date*:</label>
                 <div class="col-sm-8">
                     <input asp-for="StartedWorking" class="form-control" id="StartedWorking" type="date" placeholder="dd/mm/yyyy" />
                     <span asp-validation-for="StartedWorking" class="text-danger"></span>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="ContractType" class="col-sm-4 col-form-label text-light">Choose contract type:</label>
+                <label asp-for="ContractType" class="col-sm-4 col-form-label text-light">Choose contract type*:</label>
                 <div class="col-sm-8">
                     <select asp-for="ContractType" class="form-control" asp-items="ViewBag.ContractTypes" id="contractTypeDropdown"></select>
                     <span asp-validation-for="ContractType" class="text-danger"></span>
@@ -70,7 +70,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="ContractDue" class="col-sm-4 col-form-label text-light">Contract due:</label>
+                <label asp-for="ContractDue" class="col-sm-4 col-form-label text-light">Contract due date*:</label>
                 <div class="col-sm-8">
                     <input asp-for="ContractDue" class="form-control" type="date" id="contractDueInput" />
                     <span asp-validation-for="ContractDue" class="text-danger"></span>
@@ -78,7 +78,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="Department" class="col-sm-4 col-form-label text-light">Choose department:</label>
+                <label asp-for="Department" class="col-sm-4 col-form-label text-light">Choose department*:</label>
                 <div class="col-sm-8">
                     <select asp-for="Department" class="form-control" asp-items="ViewBag.Departments"></select>
                     <span asp-validation-for="Department" class="text-danger"></span>
