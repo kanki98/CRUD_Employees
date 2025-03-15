@@ -61,7 +61,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="StartedWorking" class="col-sm-4 col-form-label text-light">When did the employee start working?:</label>
+                <label asp-for="StartedWorking" class="col-sm-4 col-form-label text-light">Contract start date:</label>
                 <div class="col-sm-8">
                     <input asp-for="StartedWorking" class="form-control" id="StartedWorking" type="date" placeholder="dd/mm/yyyy" />
                     <span asp-validation-for="StartedWorking" class="text-danger"></span>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="form-group row mb-2">
-                <label asp-for="ContractDue" class="col-sm-4 col-form-label text-light">Contract due:</label>
+                <label asp-for="ContractDue" class="col-sm-4 col-form-label text-light">Contract due date:</label>
                 <div class="col-sm-8">
                     <input asp-for="ContractDue" class="form-control" type="date" id="contractDueInput" />
                     <span asp-validation-for="ContractDue" class="text-danger"></span>
@@ -122,7 +122,7 @@
 
 <div class="d-flex justify-content-end">
     <div class="d-flex gap-2 ">
-        <a asp-action="Index" class="btn btn-primary hover-text-color">Close</a>
+        <a asp-action="Details" asp-route-Id="@Model?.Id" class="btn btn-primary hover-text-color">Close</a>
          <button type="submit" form="editForm" class="btn btn-success hover-text-color">Save Changes</button>
     </div>
 </div>
